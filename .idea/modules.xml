@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mxm_sched_bot.iml" filepath="$PROJECT_DIR$/.idea/mxm_sched_bot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mxm_sched_bot/.idea/mxm_sched_bot.iml" filepath="$PROJECT_DIR$/../mxm_sched_bot/.idea/mxm_sched_bot.iml" />
     </modules>
   </component>
 </project>
