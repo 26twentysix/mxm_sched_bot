@@ -1,3 +1,3 @@
 in development
 
-telegram bot token stored in token.txt
+telegram bot token should be in environment variables
