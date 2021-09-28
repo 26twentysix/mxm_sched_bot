@@ -2,10 +2,11 @@ from sqlalchemy import create_engine, Integer, Column, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.session import sessionmaker
 
-engine = create_engine('sqlite://data/bot_db.db?check_same_thread=false', echo=True)
+engine = create_engine('sqlite:///data/bot_db.db?check_same_thread=false', echo=True)
 base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
+states = ['none', 'err', 'setting group', 'ready']
 
 
 class Schedule(base):
@@ -38,3 +39,16 @@ class User(base):
 
 
 base.metadata.create_all(engine)
+
+
+def add_user(user_id, username):
+    current_user = session.query(User).filter_by(user_id=user_id).one_or_none()
+    if current_user:
+        return False
+    else:
+        user = User(user_id=user_id, username=username, state=None)
+        session.add(user)
+        session.commit()
+        return True
+
+

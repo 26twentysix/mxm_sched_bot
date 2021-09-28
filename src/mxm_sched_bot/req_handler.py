@@ -1,9 +1,20 @@
-import telebot
-from main import TOKEN
+import bot_logic
 
-bot = telebot.TeleBot(TOKEN)
-while True:
-    try:
-        bot.polling(none_stop=True, interval=0)
-    except:
-        pass
+
+def req_handler(bot):
+    @bot.message_handler(commands=['start'])
+    def start_message(message):
+        bot.send_message(message.from_user.id,
+                         bot_logic.start_message(message.from_user.id, message.from_user.username))
+
+    @bot.message_handler(commands=['info'])
+    def info_message(message):
+        bot.send_message(message.from_user.id, bot_logic.info_message())
+
+    @bot.message_handler(commands=['help'])
+    def help_message(message):
+        bot.send_message(message.from_user.id, bot_logic.help_message())
+
+    @bot.message_handler(commands=['setgroup'])
+    def setgroup_message(message):
+        bot.send_message(message.from_user.id, 'Setting group')
